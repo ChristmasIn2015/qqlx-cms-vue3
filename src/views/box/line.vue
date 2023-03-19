@@ -192,7 +192,6 @@
                                 v-close-popup
                                 @click="
                                     async () => {
-                                        BoxLineUnitStore.setSchema();
                                         BoxLineUnitStore.editor.lineId = BoxLineStore.editor._id;
                                         BoxLineUnitStore.editor.boxId = BoxStore.editor._id;
                                         await BoxLineUnitStore.post();
