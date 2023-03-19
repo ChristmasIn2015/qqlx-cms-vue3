@@ -1,0 +1,40 @@
+{
+    "name": "oa-vue3",
+    "version": "0.0.0",
+    "private": true,
+    "scripts": {
+        "dev": "vite --host",
+        "build": "run-p build-only",
+        "preview": "vite preview",
+        "build-only": "vite build",
+        "type-check": "vue-tsc --noEmit --skipLibCheck"
+    },
+    "dependencies": {
+        "@quasar/extras": "^1.15.11",
+        "@types/lodash": "^4.14.191",
+        "@types/qrcode": "^1.5.0",
+        "axios": "^1.3.2",
+        "call-printer": "^1.1.1",
+        "lodash": "^4.17.21",
+        "material-icons": "^1.13.1",
+        "pinia": "^2.0.28",
+        "qqlx-core": "^0.2.6",
+        "qrcode": "^1.5.1",
+        "quasar": "^2.11.6",
+        "swiper": "^9.0.4",
+        "vue": "^3.2.45",
+        "vue-router": "^4.1.6",
+        "xlsx": "^0.18.5"
+    },
+    "devDependencies": {
+        "@quasar/vite-plugin": "^1.3.0",
+        "@types/node": "^18.11.12",
+        "@vitejs/plugin-vue": "^4.0.0",
+        "@vue/tsconfig": "^0.1.3",
+        "npm-run-all": "^4.1.5",
+        "sass": "1.32.12",
+        "typescript": "~4.7.4",
+        "vite": "^4.0.0",
+        "vue-tsc": "^1.0.12"
+    }
+}
