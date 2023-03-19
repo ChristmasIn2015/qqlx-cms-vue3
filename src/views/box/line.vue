@@ -48,8 +48,6 @@
                     </div>
                     <div class="col-2 text-right">
                         <a
-                            v-if="index === boxLine.joinUnits.length - 1"
-                            href=""
                             class="text-negative text-underline cursor-pointer"
                             @click="
                                 async () => {
