@@ -64,9 +64,9 @@
                 <span class="q-mx-sm text-underline text-negative cursor-pointer text-weight-bold" @click="openRoleOA(ENUM_ROLE_OA.BASE)">添加</span>
             </div>
             <div class="text-body1 text-grey">
-                <div>1.添加/删除/修改收集箱的基础信息</div>
-                <div>2.查看/下载收集箱中的打卡记录</div>
-                <div>3.添加/删除/修改打卡规则</div>
+                <div>1.添加/删除/修改打卡箱的基础信息</div>
+                <div>2.查看/下载打卡箱中的打卡记录</div>
+                <div>3.添加/删除/修改打卡场景</div>
             </div>
         </q-card-section>
         <q-card-section class="row">
@@ -112,7 +112,7 @@
                 <span class="q-mx-sm text-underline text-negative cursor-pointer text-weight-bold" @click="openRoleOA(ENUM_ROLE_OA.VISITOR)">添加</span>
             </div>
             <div class="text-body1 text-grey">
-                <div>1.访客仅可以查看/下载收集箱中的打卡记录</div>
+                <div>1.访客仅可以查看/下载打卡箱中的打卡记录</div>
             </div>
         </q-card-section>
         <q-card-section class="row">
@@ -193,8 +193,8 @@ const openRoleOA = (role: ENUM_ROLE_OA) => {
                 id: "wx-login-join",
                 appid: "wxd0e6ee13822ccb7f",
                 scope: "snsapi_login",
-                redirect_uri: "http://qqlx.tech/oa/login",
-                state: `JOIN&enum=${role}`,
+                redirect_uri: "http://qqlx.tech",
+                state: `JOIN@${role}`,
             });
     }, 500);
 };

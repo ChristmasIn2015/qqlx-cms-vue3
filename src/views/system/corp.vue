@@ -7,7 +7,7 @@
         </div>
         <div class="q-mt-md">
             <div>
-                您的使用数据，如打卡信息、打卡规则等，都将会保存在
+                您的使用数据，如打卡信息、打卡场景等，都将会保存在
                 <span class="text-weight-bold">@{{ CorpStore.corpPicked?.name }}</span>
                 中， 您也可以
                 <q-btn

@@ -16,7 +16,7 @@
                         </span>
                     </div>
                     <div class="row text-grey">
-                        <span class="col">您的使用数据，如打卡信息、打卡规则等，都将会保存在其中</span>
+                        <span class="col">您的使用数据，如打卡信息、打卡场景等，都将会保存在其中</span>
                     </div>
                 </q-card-section>
             </q-card>

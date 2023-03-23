@@ -18,34 +18,34 @@
             dense
             row-key="_id"
             :columns="[
-                { name: 'joinBox', field: 'joinBox', label: '收集箱', align: 'left', style: 'font-size: 16px; width: 188px;' },
-                { name: 'timeCreateString', field: 'timeCreateString', label: '打卡时间', align: 'left', style: 'font-size: 16px; width: 255px;' },
-                { name: 'nickname', field: 'joinWeChat', label: '昵称', align: 'left', style: 'font-size: 16px; width: 188px;' },
-                { name: 'count', field: 'count', label: '今日已累计打卡', align: 'left', style: 'font-size: 16px;' },
-                // { name: '_id', field: '_id', label: '操作', style: 'font-size: 16px; ' },
+                { name: 'joinBox', field: 'joinBox', label: '打卡箱', align: 'left', style: 'font-size: 16px; width: 144px;' },
+                { name: 'timeCreateString', field: 'timeCreateString', label: '打卡时间', align: 'left', style: 'font-size: 16px; width: 188px;' },
+                { name: 'count', field: 'count', label: '累计', align: 'left', style: 'font-size: 16px;' },
+                { name: 'nickname', field: 'joinUserInfo', label: '昵称', align: 'left', style: 'font-size: 16px; width: 188px;' },
+                { name: 'phone', field: 'joinUserInfo', label: '手机号', align: 'left', style: 'font-size: 16px;' },
             ]"
             :rows="CheckStore.list"
             :rows-per-page-options="[CheckStore.page.pageSize]"
         >
             <template v-slot:top="props">
-                <div class="col-4 q-py-md">
+                <div class="col-4">
                     <q-input
+                        style="transform: translateX(-4px)"
                         dense
                         filled
                         clearable
                         color="primary"
                         clear-icon="close"
-                        placeholder="请输入名称，点击空白区域开始搜索"
+                        placeholder="请输入昵称/手机号"
                         v-model="CheckStore.keyword"
                         :loading="CheckStore.loadding"
-                        @blur="CheckStore.get(1)"
                     >
-                        <template v-slot:prepend>
-                            <q-icon name="search" />
+                        <template v-slot:after>
+                            <q-btn icon="search" color="primary" @click="CheckStore.get(1)"></q-btn>
                         </template>
                     </q-input>
                 </div>
-                <div class="col-8 text-right">
+                <div class="col-8 text-right q-pb-md q-pt-sm">
                     <q-btn class="text-body1" @click="CheckStore.download()">导出</q-btn>
                     <q-btn color="white" text-color="black" class="text-body1 q-ml-sm">
                         <span v-if="CheckStore.timeQuasarPicked">
@@ -70,8 +70,9 @@
                 <q-tr>
                     <q-td key="joinBox" :props="props"> {{ props.row.joinBox?.title }} </q-td>
                     <q-td key="timeCreateString" :props="props"> {{ props.row.timeCreateString }} </q-td>
-                    <q-td key="nickname" :props="props"> {{ props.row.joinWeChat?.nickname }} </q-td>
-                    <q-td key="count" :props="props"> {{ props.row.count }} 次</q-td>
+                    <q-td key="count" :props="props">第 {{ props.row.count }} 次</q-td>
+                    <q-td key="nickname" :props="props"> {{ props.row.joinUserInfo?.nickname }} </q-td>
+                    <q-td key="phone" :props="props"> {{ props.row.joinUserInfo?.phone }} </q-td>
                     <q-td key="_id" :props="props">
                         <!-- <a class="cursor-pointer text-underline text-negative" @click="CheckStore.delete(props.row)">删除</a> -->
                     </q-td>
@@ -96,7 +97,7 @@
         </q-table>
 
         <q-inner-loading :showing="CheckStore.loadding">
-            <q-spinner-gears size="50px" color="pink-6" />
+            <q-spinner-gears size="50px" color="primary" />
         </q-inner-loading>
     </q-card>
 </template>

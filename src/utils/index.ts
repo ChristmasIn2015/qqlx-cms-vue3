@@ -31,8 +31,6 @@ class Request {
                         localStorage.setItem("qqlx-token", "");
                         window.location.assign("/oa/login");
                     }, 2000);
-                } else if (["20001"].includes(response.data?.code)) {
-                    setTimeout(() => window.location.assign("/oa/system/pay"), 2000);
                 }
             }
             return response;
@@ -112,32 +110,8 @@ export function getPage(pageSize = 20): MongodbPage {
 export function download() {
     let workbook = XLSX.utils.book_new();
 
-    const Sheet0 = XLSX.utils.aoa_to_sheet([
-        ["@产地", "@材质", "@序号", "@日期", "@品名", "@规格", "@重量/吨", "@数量", "@单价/元", "@客户", "@备注", "@@请勿更改标题头部@@"],
-        ["马鞍山", "FEAT", "A0001", "2023-01-01", "无花大板", "1.0*1250*C", "10", "1", "6300", "宝钢集团有限公司", ""],
-        ["马鞍山", "FEAT", "A0001", "2023-01-10", "无花大板", "1.0*1250*C", "10", "1", "6300", "宝钢集团有限公司", ""],
-        ["马鞍山", "FEAT", "A0001", "2023-01-15", "无花大板", "1.0*1250*C", "10", "1", "6300", "宝钢集团有限公司", ""],
-        ["马鞍山", "FEAT", "A0001", "2023-01-20", "无花大板", "1.0*1250*C", "10", "1", "6300", "宝钢集团有限公司", ""],
-    ]);
-    XLSX.utils.book_append_sheet(workbook, Sheet0, "商品导入");
-
-    const Sheet1 = XLSX.utils.aoa_to_sheet([
-        ["@客户名称", "@联系方式", "@备注", "@@请勿更改标题头部@@"],
-        ["中信泰富特钢集团股份有限公司", "0510-80673288", "tftg"],
-        ["中国建筑上海设计研究院有限公司", "021-62858180", "zgjz"],
-        ["首页-鞍山钢铁集团有限公司", "0412-6734881", "asgt"],
-        ["宝钢集团有限公司", "021-58350000", "bg"],
-    ]);
-    XLSX.utils.book_append_sheet(workbook, Sheet1, "客户导入");
-
-    const Sheet2 = XLSX.utils.aoa_to_sheet([
-        ["@收款银行", "@客户名称", "@日期", "@金额", "@备注", "@@请勿更改标题头部@@"],
-        ["中国银行", "中国建筑上海设计研究院有限公司", "2022-3-1", "200000"],
-        ["农业银行", "中国建筑上海设计研究院有限公司", "2022-4-10", "14000"],
-        ["建设银行", "中信泰富特钢集团股份有限公司", "2022-6-1", "1000"],
-        ["招商银行", "中信泰富特钢集团股份有限公司", "2022-6-1", "2000"],
-    ]);
-    XLSX.utils.book_append_sheet(workbook, Sheet2, "资金导入");
+    const Sheet0 = XLSX.utils.aoa_to_sheet([["@手机号", "@@请勿更改标题头部@@"], ["13263911023"], ["13263911024"], ["13263911025"], ["13263911026"]]);
+    XLSX.utils.book_append_sheet(workbook, Sheet0, "白名单导入");
 
     XLSX.writeFile(workbook, "清泉流响-批量导入模板.xlsx");
 }

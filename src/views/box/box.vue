@@ -1,11 +1,11 @@
 <template>
     <div class="q-pt-md q-pl-sm q-pb-lg q-mt-lg text-white">
         <div class="text-h4 text-weight-bold row items-center">
-            <span>收集箱</span>
+            <span>打卡箱</span>
         </div>
         <div class="q-mt-md">
             <div>
-                您当前正在
+                1.您当前正在
                 <span class="text-weight-bold">@{{ CorpStore.corpPicked?.name }}</span>
                 中， 您可以
                 <q-btn
@@ -20,8 +20,9 @@
                         }
                     "
                 >
-                    添加新收集箱
+                    添加
                 </q-btn>
+                新打卡箱
             </div>
         </div>
     </div>
@@ -33,31 +34,11 @@
                     {{ box.title }}
                 </div>
                 <div class="text-grey ellipsis">{{ box.desc || "-" }}</div>
-                <div class="text-grey ellipsis">
-                    <span>创建时间：</span>
-                    <span>{{ box.timeCreateString || "-" }}</span>
-                </div>
             </q-card-section>
             <q-card-actions>
-                <q-space></q-space>
                 <q-btn icon="more_horiz" flat>
                     <q-menu>
                         <q-list>
-                            <q-item clickable v-close-popup @click="checking(box)">
-                                <q-item-section>开始打卡</q-item-section>
-                            </q-item>
-                            <q-item
-                                clickable
-                                v-close-popup
-                                @click="
-                                    () => {
-                                        BoxStore.setSchema(box);
-                                        $router.push('/oa/box/check');
-                                    }
-                                "
-                            >
-                                <q-item-section>查看记录</q-item-section>
-                            </q-item>
                             <q-item
                                 clickable
                                 v-close-popup
@@ -68,7 +49,7 @@
                                     }
                                 "
                             >
-                                <q-item-section>修改</q-item-section>
+                                <q-item-section>修改打卡箱</q-item-section>
                             </q-item>
                             <q-item clickable v-close-popup>
                                 <q-item-section class="text-negative" @click="BoxStore.delete(box)">
@@ -77,6 +58,21 @@
                             </q-item>
                         </q-list>
                     </q-menu>
+                </q-btn>
+                <q-space></q-space>
+                <q-btn
+                    icon="list"
+                    @click="
+                        () => {
+                            BoxStore.setSchema(box);
+                            $router.push('/oa/box/check');
+                        }
+                    "
+                >
+                    <q-tooltip class="text-body1">查看打卡记录</q-tooltip>
+                </q-btn>
+                <q-btn color="primary" icon="how_to_vote" @click="checking(box)">
+                    <q-tooltip class="text-body1">开始打卡</q-tooltip>
                 </q-btn>
             </q-card-actions>
         </q-card>
@@ -95,25 +91,11 @@
                     {{ box.title }}
                 </div>
                 <div class="text-grey ellipsis">{{ box.desc || "-" }}</div>
-                <div class="text-grey ellipsis">{{ box.timeCreateString || "-" }}</div>
             </q-card-section>
             <q-card-actions>
-                <q-space></q-space>
                 <q-btn icon="more_horiz" flat>
                     <q-menu>
                         <q-list>
-                            <q-item
-                                clickable
-                                v-close-popup
-                                @click="
-                                    () => {
-                                        BoxStore.setSchema(box);
-                                        dialogBox = true;
-                                    }
-                                "
-                            >
-                                <q-item-section>修改</q-item-section>
-                            </q-item>
                             <q-item clickable v-close-popup>
                                 <q-item-section class="text-negative" @click="BoxStore.delete(box)">
                                     {{ box.isDisabled ? "恢复" : "删除" }}
@@ -129,7 +111,7 @@
     <q-dialog v-model="dialogBox" persistent>
         <q-card class="w-400">
             <q-toolbar>
-                <q-toolbar-title>收集箱</q-toolbar-title>
+                <q-toolbar-title>打卡箱</q-toolbar-title>
                 <q-btn dense flat icon="close" v-close-popup></q-btn>
             </q-toolbar>
             <q-separator />
@@ -151,8 +133,6 @@
             <q-card-actions align="right">
                 <q-btn
                     color="primary"
-                    push
-                    square
                     @click="
                         async () => {
                             if (BoxStore.editor._id) await BoxStore.patch();
@@ -170,7 +150,7 @@
     <q-dialog v-model="dialogCheck" persistent>
         <q-card class="w-500">
             <q-toolbar>
-                <q-toolbar-title>正在打卡 </q-toolbar-title>
+                <q-toolbar-title>{{ checkFocusing ? "正在打卡" : "请保持光标在输入框内" }} </q-toolbar-title>
                 <q-btn dense flat icon="close" v-close-popup @click="BoxStore.setSchema()"></q-btn>
             </q-toolbar>
             <q-separator />

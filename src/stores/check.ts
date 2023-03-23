@@ -62,9 +62,9 @@ export const useCheckStore = defineStore("Check", {
             const res: getCheckRes = await request.get(PATH_OA_CHECK, { dto });
             let workbook = XLSX.utils.book_new();
 
-            const list = [["收集箱", "打卡时间", "昵称", "今日累计打卡"]];
+            const list = [["打卡箱", "打卡时间", "昵称", "今日累计打卡"]];
             res.list.map((e) => {
-                list.push([e.joinBox?.title || "-", e.timeCreateString, e.joinWeChat?.nickname || "-", String(e.count)]);
+                list.push([e.joinBox?.title || "-", e.timeCreateString, e.joinUserInfo?.nickname || "-", String(e.count)]);
             });
             const Sheet0 = XLSX.utils.aoa_to_sheet(list);
             XLSX.utils.book_append_sheet(workbook, Sheet0, "打卡记录导出");
@@ -87,9 +87,19 @@ export const useCheckStore = defineStore("Check", {
 
                 this.success = "打卡成功";
                 this.error = "";
+
+                // 朗读
+                const sound = window.speechSynthesis;
+                const read_text = new SpeechSynthesisUtterance(this.success);
+                sound.speak(read_text);
             } catch (error) {
                 NotifyStore.fail((error as Error).message);
                 this.error = (error as Error).message;
+
+                // 朗读
+                const sound = window.speechSynthesis;
+                const read_text = new SpeechSynthesisUtterance(this.error);
+                sound.speak(read_text);
             }
         },
         async delete(check: Check) {

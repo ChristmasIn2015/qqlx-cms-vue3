@@ -34,26 +34,38 @@ const routes = [
             },
             {
                 path: "box",
-                name: "行为日志",
+                name: "打卡",
                 component: () => import("@/views/box/index.vue"),
                 children: [
                     {
                         path: "home",
-                        name: "收集箱",
+                        name: "打卡箱",
                         component: () => import("@/views/box/box.vue"),
                         meta: { icon: "how_to_vote", color: "indigo-14", backColorClass: "color-back-box", show: true },
                     },
                     {
+                        path: "access",
+                        name: "白名单",
+                        component: () => import("@/views/box/access.vue"),
+                        meta: { icon: "how_to_reg", color: "indigo-14", backColorClass: "color-back-box", show: true },
+                    },
+                    {
                         path: "line",
-                        name: "规则列表",
+                        name: "场景",
                         component: () => import("@/views/box/line.vue"),
-                        meta: { icon: "rule_folder", color: "indigo-14", backColorClass: "color-back-box", show: true },
+                        meta: { icon: "checklist_rtl", color: "indigo-14", backColorClass: "color-back-box", show: true },
                     },
                     {
                         path: "check",
                         name: "打卡记录",
                         component: () => import("@/views/box/check.vue"),
                         meta: { icon: "mobile_friendly", color: "indigo-14", backColorClass: "color-back-box", show: false },
+                    },
+                    {
+                        path: "lineAccess",
+                        name: "场景白名单",
+                        component: () => import("@/views/box/lineAccess.vue"),
+                        meta: { icon: "checklist_rtl", color: "indigo-14", backColorClass: "color-back-box", show: false },
                     },
                 ],
             },

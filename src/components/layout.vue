@@ -2,7 +2,7 @@
     <q-layout container view="lHh Lpr lff">
         <q-drawer side="left" :width="180" show-if-above class="select-none hide-scrollbar bg-blue-grey-1">
             <div class="q-pt-sm q-pl-md text-weight-bold text-h5" :class="`text-${route.meta?.color}`">
-                <div>餐饮后台</div>
+                <div>办公平台</div>
             </div>
 
             <!-- 导航 -->
