@@ -52,7 +52,7 @@ onMounted(async () => {
             RoleOAStore.setSchema();
             const res = await UserStore.login(code);
             await RoleOAStore.post(res.userId, role);
-            // window.location.assign("/oa/system/setting");
+            window.location.assign("/oa/system/setting");
         }
     } catch (error) {
         NotifyStore.fail((error as Error).message);
