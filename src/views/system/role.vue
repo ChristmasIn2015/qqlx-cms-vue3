@@ -193,7 +193,7 @@ const openRoleOA = (role: ENUM_ROLE_OA) => {
                 id: "wx-login-join",
                 appid: "wxd0e6ee13822ccb7f",
                 scope: "snsapi_login",
-                redirect_uri: "http://qqlx.tech",
+                redirect_uri: "http://qqlx.tech/oa/login",
                 state: `JOIN@${role}`,
             });
     }, 500);
